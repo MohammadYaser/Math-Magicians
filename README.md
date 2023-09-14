@@ -110,6 +110,7 @@ If you like my page please show your support and give this page a star!
 
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
+I would like to say a big thanks to  Microverse team for the great curriculum.
 <br>
 
 
