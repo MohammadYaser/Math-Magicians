@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import calculate from '../logic/calculate';
+import React from 'react';
 import { useCalc } from './CalcContext';
+import calculate from '../logic/calculate';
 
 const getStyleName = (btn) => {
   const className = {
@@ -25,9 +26,9 @@ const Button = ({ value }) => {
   };
 
   return (
-
-    <button onClick={() => btnClickHandle(value)} type="button" className={`${getStyleName(value)} button`}>{value}</button>
-
+    <button onClick={() => btnClickHandle(value)} type="button" className={`${getStyleName(value)} button`}>
+      {value}
+    </button>
   );
 };
 
