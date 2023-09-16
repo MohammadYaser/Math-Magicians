@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const ButtonBox = ({ children }) => (
@@ -6,7 +5,10 @@ const ButtonBox = ({ children }) => (
 );
 
 ButtonBox.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
 };
 
 export default ButtonBox;

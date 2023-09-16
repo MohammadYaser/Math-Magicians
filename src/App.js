@@ -1,13 +1,14 @@
 import './App.css';
 import Calculator from './components/Calculator';
-import Screen from './components/Screen';
+import { CalcProvider } from './components/CalcContext';
 
 function App() {
   return (
     <div className="App">
-      <Calculator>
-        <Screen />
-      </Calculator>
+      <CalcProvider>
+        <Calculator />
+      </CalcProvider>
+
     </div>
   );
 }
