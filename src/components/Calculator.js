@@ -5,6 +5,7 @@ import ButtonBox from './ButtonBox';
 import Button from './Button';
 import Screen from './Screen';
 import calculate from '../logic/calculate';
+import Quote from './Quote';
 
 const btnValues = [
   ['AC', '+/-', '%', '÷'],
@@ -24,7 +25,9 @@ const Calculator = ({ children }) => {
 
   return (
     <div className="Wrapper">
+      <Quote />
       {children}
+
       <Screen />
       <ButtonBox>
         {btnValues.map((row) => (

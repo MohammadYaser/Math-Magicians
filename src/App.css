@@ -48,3 +48,33 @@
 .equal {
   background: orange;
 }
+
+.newLoading,
+.newError {
+  justify-content: center;
+  font-size: 2em;
+  color: #dd8022;
+  display: flex;
+  align-items: center;
+}
+
+.newQuote {
+  padding: 5px;
+  color: rgb(29, 7, 7);
+}
+
+.newQuote h2 {
+  color: green;
+  text-align: center;
+}
+
+.blkQuote {
+  text-align: justify;
+}
+
+.newQuote > p {
+  font-weight: 700;
+  color: #5a5b61;
+  font-size: 1.2em;
+  text-align: right;
+}
