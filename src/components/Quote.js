@@ -1,69 +1,74 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const Quote = () => {
-  const [newQuote, setNewQuote] = useState(null);
-  const [quoteLoading, setQuoteLoading] = useState(true);
-  const [error, setError] = useState('');
+function Quote() {
+  const [quoteData, setQuoteData] = useState({
+    quote: 'Loading...',
+    author: '',
+    loading: true,
+    error: null,
+  });
+
+  const {
+    quote, author, loading, error,
+  } = quoteData;
 
   useEffect(() => {
     const fetchData = async () => {
-      const API_KEY = 'aQHetjM7fPp6GpfmgJe4mA==zGAdLfljeQtfgrXo';
-      const quoteCategory = 'health';
+      const APP_URL = 'https://api.api-ninjas.com/v1/quotes';
+      const APP_API_KEY = 'aQHetjM7fPp6GpfmgJe4mA==zGAdLfljeQtfgrXo';
+      const QuoteCategory = 'health';
 
       try {
-        const res = await fetch(`https://api.api-ninjas.com/v1/quotes?category=${quoteCategory}`, {
-          headers: {
-            'X-Api-Key': API_KEY,
-          },
+        const res = await fetch(`${APP_URL}?category=${QuoteCategory}`, {
+          headers: { 'X-Api-Key': APP_API_KEY },
         });
 
         if (!res.ok) {
-          throw new Error('There is problem with the Network');
+          throw new Error('There is an error with the network');
         }
 
-        const resultData = await res.json();
-        const randIndex = Math.floor(Math.random() * resultData.length);
-        const randomQuote = resultData[randIndex];
-        setNewQuote(randomQuote);
-        setQuoteLoading(false);
+        const resulData = await res.json();
+        const { quote, author } = resulData[0];
+        setQuoteData({
+          quote, author, loading: false, error: null,
+        });
       } catch (error) {
-        setError(error.message);
-        setQuoteLoading(false);
+        setQuoteData({ ...quoteData, error: error.message });
       }
     };
 
-    if (!newQuote) {
-      fetchData();
-    }
-  }, [newQuote]);
+    const fetchTimeout = setTimeout(fetchData, 1000);
 
-  if (quoteLoading) {
-    return <div className="newLoading">Loading...</div>;
-  }
+    return () => clearTimeout(fetchTimeout);
+  }, []);
 
   if (error) {
     return (
-      <div className="newError">
+      <div>
         Error:
         {error}
       </div>
     );
   }
 
-  if (newQuote) {
-    return (
-      <div className="newQuote">
-        <h2>Health Quote</h2>
-        <blockquote className="blkQuote">{newQuote.quote}</blockquote>
-        <p>
-          -
-          {newQuote.author}
-        </p>
-      </div>
-    );
-  }
-
-  return null;
-};
+  return (
+    <>
+      {loading ? (
+        <div className="newLoading">Loading...</div>
+      ) : (
+        <div className="newQuote">
+          <h2>Health Quote</h2>
+          <h3 className="blkQuote">
+            &#34;
+            {quote}
+            &#34; by
+            {' '}
+            <span className="author">{author}</span>
+          </h3>
+        </div>
+      )}
+    </>
+  );
+}
 
 export default Quote;

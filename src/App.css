@@ -59,8 +59,11 @@
 }
 
 .newQuote {
-  padding: 5px;
+  border: 1px solid rgb(245, 243, 243);
+  width: 400px;
+  padding: 10px;
   color: rgb(29, 7, 7);
+  box-shadow: 0 9px 15px;
 }
 
 .newQuote h2 {
