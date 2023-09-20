@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const QoutePage = () => {
   const [quoteData, setQuoteData] = useState({
@@ -11,6 +11,8 @@ const QoutePage = () => {
   const {
     quote, author, loading, error,
   } = quoteData;
+
+  const quoteDataRef = useRef(quoteData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,11 +31,16 @@ const QoutePage = () => {
 
         const resulData = await res.json();
         const { quote, author } = resulData[0];
-        setQuoteData({
-          quote, author, loading: false, error: null,
-        });
+        quoteDataRef.current = {
+          ...quoteDataRef.current,
+          quote,
+          author,
+          loading: false,
+          error: null,
+        };
+        setQuoteData(quoteDataRef.current);
       } catch (error) {
-        setQuoteData({ ...quoteData, error: error.message });
+        setQuoteData({ ...quoteDataRef.current, error: error.message });
       }
     };
 
