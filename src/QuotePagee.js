@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function Quote() {
+const QoutePage = () => {
   const [quoteData, setQuoteData] = useState({
     quote: 'Loading...',
     author: '',
@@ -57,7 +57,6 @@ function Quote() {
         <div className="newLoading">Loading...</div>
       ) : (
         <div className="newQuote">
-          <h2>Health Quote</h2>
           <h3 className="blkQuote">
             &#34;
             {quote}
@@ -69,6 +68,6 @@ function Quote() {
       )}
     </>
   );
-}
+};
 
-export default Quote;
+export default QoutePage;

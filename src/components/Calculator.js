@@ -24,7 +24,6 @@ const Calculator = ({ children }) => {
 
   return (
     <div className="Wrapper">
-
       {children}
 
       <Screen />
