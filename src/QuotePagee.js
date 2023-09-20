@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
-function Quote() {
+const QoutePage = () => {
   const [quoteData, setQuoteData] = useState({
     quote: 'Loading...',
     author: '',
@@ -11,6 +11,8 @@ function Quote() {
   const {
     quote, author, loading, error,
   } = quoteData;
+
+  const quoteDataRef = useRef(quoteData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,11 +31,16 @@ function Quote() {
 
         const resulData = await res.json();
         const { quote, author } = resulData[0];
-        setQuoteData({
-          quote, author, loading: false, error: null,
-        });
+        quoteDataRef.current = {
+          ...quoteDataRef.current,
+          quote,
+          author,
+          loading: false,
+          error: null,
+        };
+        setQuoteData(quoteDataRef.current);
       } catch (error) {
-        setQuoteData({ ...quoteData, error: error.message });
+        setQuoteData({ ...quoteDataRef.current, error: error.message });
       }
     };
 
@@ -57,7 +64,6 @@ function Quote() {
         <div className="newLoading">Loading...</div>
       ) : (
         <div className="newQuote">
-          <h2>Health Quote</h2>
           <h3 className="blkQuote">
             &#34;
             {quote}
@@ -69,6 +75,6 @@ function Quote() {
       )}
     </>
   );
-}
+};
 
-export default Quote;
+export default QoutePage;

@@ -6,9 +6,10 @@
 
 body {
   height: 100vh;
-  background: #f4f4f4;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Times New Roman', Times, serif;
+  font-family: 'Courier New', Courier, monospace;
 }

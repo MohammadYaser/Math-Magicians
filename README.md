@@ -16,7 +16,7 @@
 - [📝 License](#license)
 
 
-# 📖 Mohammad Yaser Safi <a name="about-project"></a>
+# 📖 Math Magicians <a name="about-project"></a>
 <br>
 ## Math Magicians: Your Mathematical Companion.
 Welcome to Math Magicians, your trusted web application for all your mathematical requirements! Our powerful calculator app is designed to make complex computations a breeze. Math Magicians is here to streamline your mathematical journey with a sleek and user-friendly interface.
